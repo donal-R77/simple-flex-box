@@ -1,3 +1,4 @@
+FROM httpd:latest
 FROM node:alpine
 
 COPY . /app
