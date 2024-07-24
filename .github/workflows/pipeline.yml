@@ -17,8 +17,7 @@ jobs:
       - name: Set up GCloud
         uses: 'google-github-actions/setup-gcloud@v2'
         with:
-          service_account_email: ${{ secrets.GCP_SERVICE_ACCOUNT_MAIL }}
-          service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+           credentials_json: '${{ secrets.GCP_SERVICE_ACCT }}'
       - run: |
           gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
           gcloud config set run/region ${{ secrets.GCP_REGION }}
@@ -38,8 +37,7 @@ jobs:
       - name: Set up GCloud
         uses: 'google-github-actions/setup-gcloud@v2'
         with:
-          service_account_email: ${{ secrets.GCP_SERVICE_ACCT_EMAIL }}
-          service_account_key: ${{ secrets.GCP_SERVICE_ACCT_KEY }}
+          credentials_json: '${{ secrets.GCP_SERVICE_ACCT }}'
       - run: |
           gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
           gcloud config set run/region ${{ secrets.GCP_REGION }}
@@ -55,8 +53,7 @@ jobs:
     - name: Set up GCloud
       uses: 'google-github-actions/setup-gcloud@v2'
       with:
-        service_account_email: ${{ secrets.GCP_SERVICE_ACCT_EMAIL }}
-        service_account_key: ${{ secrets.GCP_SERVICE_ACCT_KEY }}
+        credentials_json: '${{ secrets.GCP_SERVICE_ACCT }}'
     - run: |
         gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
         gcloud config set run/region ${{ secrets.GCP_REGION }}
