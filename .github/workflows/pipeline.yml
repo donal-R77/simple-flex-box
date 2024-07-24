@@ -31,7 +31,6 @@ jobs:
       - name: build the docker image
         id: build-docker-image
         run: |
-          ls -la 
           docker build . -f Dockerfile -t ${{secrets.DOCKERHUB_USERNAME}}${{ env.APPLICATION_NAME }}:latest
       - name: push the docker image
         id: push-docker-image
