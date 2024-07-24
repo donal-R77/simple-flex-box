@@ -43,6 +43,8 @@ jobs:
     name: Deploy to GCP
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: "Auth"
         uses: "google-github-actions/auth@v1"
         with:
