@@ -1,6 +1,8 @@
 name: Pipeline
 
 on: [push]
+env:
+  APPLICATION_NAME: flexbox
 jobs:
   lint:
       runs-on: ubuntu-latest
@@ -16,8 +18,8 @@ jobs:
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
           version: '274.0.1'
-          service_account_email: ${{ secrets.GCP_SERVICE_ACCT_EMAIL }}
-          service_account_key: ${{ secrets.GCP_SERVICE_ACCT_KEY }}
+          service_account_email: ${{ secrets.GCP_SERVICE_ACCOUNT_MAIL }}
+          service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
       - run: |
           gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
           gcloud config set run/region ${{ secrets.GCP_REGION }}
