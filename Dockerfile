@@ -1,8 +1,4 @@
-FROM httpd:latest
 FROM node:alpine
-
-COPY . /app
-
 WORKDIR /app
-
+COPY . /app
 CMD node index.js 
