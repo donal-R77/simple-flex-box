@@ -54,4 +54,4 @@ jobs:
       - name: "Bash"
         shell: 'bash'
         run: |
-         gcloud compute ssh maric-instance-tp --zone=us-central1-a --region=us-central1 --tunnel-through-iap --internal-ip --project=primeval-mark-378114 --command="docker pull ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:latest && docker run -p 5000:5000 ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:latest" --network=default
+         gcloud compute ssh maric-instance-tp  --zone=us-central1-a --command="docker pull ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:latest && docker run -p 5000:5000 ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:latest" --region=us-central1 --tunnel-through-iap --project=primeval-mark-378114  --network=default
