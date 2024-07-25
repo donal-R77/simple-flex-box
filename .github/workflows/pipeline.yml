@@ -44,18 +44,12 @@ jobs:
     name: Deploy to GCP
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
+      - uses: actions/checkout@v3.5.3
       - name: "Auth"
         uses: "google-github-actions/auth@v1"
         with:
           credentials_json: "${{ secrets.GCP_SERVICE_ACCT }}"
-          
-      - name: "Set up Cloud SDK"
-        uses: "google-github-actions/setup-gcloud@v1"
       - name: "Bash"
         shell: 'bash'
         run: |
-         $(gcloud info --format="value(basic.python_location)") -m pip install numpy --upgrade pip
-         gcloud compute ssh maric-instance-tp --zone=us-central1-a --command="docker pull ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:latest && docker run -p 5000:5000 ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:latest" --region=us-central1 --network=default --tunnel-through-iap --project=primeval-mark-378114  
+         gcloud compute ssh --zone "us-central1-a" "maric-instance-tp" --tunnel-through-iap --project "primeval-mark-378114" --command="echo 'Hello world !'"   
