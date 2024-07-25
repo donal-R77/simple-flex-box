@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.5.3
-      - name: "Auth"
+      - name: "Auth" 
         uses: "google-github-actions/auth@v1"
         with:
           credentials_json: "${{ secrets.GCP_SERVICE_ACCT }}"
