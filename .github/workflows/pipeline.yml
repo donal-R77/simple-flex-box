@@ -9,6 +9,7 @@ on:
    branches: ['main']
 env:
   APPLICATION_NAME: flexbox 
+  CONTAINER_NAME: flexdeploy 
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -53,4 +54,4 @@ jobs:
         shell: 'bash'
         run: |
          $(gcloud info --format="value(basic.python_location)") -m pip install numpy
-         gcloud compute ssh --zone "us-central1-a" "maric-instance-tp" --tunnel-through-iap --project "primeval-mark-378114" --command="docker pull ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:latest && docker run -d -p 5000:5000 ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:latest && docker-compose up -d --build"   
+         gcloud compute ssh --zone "us-central1-a" "maric-instance-tp" --tunnel-through-iap --project "primeval-mark-378114" --command="docker pull ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:latest && docker stop ${{env.CONTAINER_NAME}} && docker run -d -p 3000:5000 --name ${{env.CONTAINER_NAME}} ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:latest"   
