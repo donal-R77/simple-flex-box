@@ -9,6 +9,7 @@ on:
    branches: ['main']
 env:
   APPLICATION_NAME: flexbox 
+  CONTAINER_NAME: flexdeploy 
 jobs:
   lint:
     runs-on: ubuntu-latest
