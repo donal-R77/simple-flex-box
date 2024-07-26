@@ -54,4 +54,4 @@ jobs:
         shell: 'bash'
         run: |
          $(gcloud info --format="value(basic.python_location)") -m pip install numpy
-         gcloud compute ssh --zone "us-central1-a" "maric-instance-tp" --tunnel-through-iap --project "primeval-mark-378114" --command="docker pull ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:latest && docker run --entrypoint /bash_test.sh -d -p 5000:5000 --name ${{env.CONTAINER_NAME}} ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:latest"      
+         gcloud compute ssh --zone "us-central1-a" "maric-instance-tp" --tunnel-through-iap --project "primeval-mark-378114" --command="docker pull ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:latest && docker run --entrypoint /bash_test.sh -d -p 5000:5000 ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:latest"      
