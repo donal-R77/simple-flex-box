@@ -54,7 +54,7 @@
         - name: "Deploy file sh to cloud storage"
           shell: 'bash'
           run: |
-            gcloud storage cp bash_test.sh gs://macdo_bucket/
+            gcloud storage cp bash_test.sh gs://macdo_bucket
    
         - name: "Bash"
           shell: 'bash'
