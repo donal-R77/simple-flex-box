@@ -50,9 +50,15 @@
           uses: "google-github-actions/auth@v1"
           with:
             credentials_json: "${{ secrets.GCP_SERVICE_ACCT }}"
+
+        - name: "Deploy file sh to cloud storage"
+          shell: 'bash'
+          run: |
+            gcloud storage cp bash_test.sh gs://macdo_bucket/
+   
         - name: "Bash"
           shell: 'bash'
           run: |
            $(gcloud info --format="value(basic.python_location)") -m pip install numpy --upgrade pip
-           gcloud compute ssh --zone "us-central1-a" "maric-instance-tp" --tunnel-through-iap --project "primeval-mark-378114" --command=" docker stop flex && docker container rm flex && docker pull ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:flex && docker run -d -p 5000:5000 --name flex ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:flex"     
+           gcloud compute ssh --zone "us-central1-a" "maric-instance-tp" --tunnel-through-iap --project "primeval-mark-378114" --command="cd /home/runner/frontend_app && gcloud storage cp gs://macdo_bucket/bash_test.sh /home/runner/frontend_app && chmod +x bash_test.sh && docker pull ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:flex && ./bash_test.sh"     
   
