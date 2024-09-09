@@ -6,7 +6,7 @@
 
   on: 
    push:
-     branches: ['main']
+     branches: ['donal']
   env:
     APPLICATION_NAME: flexbox 
     CONTAINER_NAME: flexdeploy 
