@@ -62,8 +62,12 @@ jobs:
             mkdir -p ~/.ssh
             echo "${{ secrets.AWS_LINUX }}" > ~/.ssh/aws-linux.pem
             chmod 400 ~/.ssh/aws-linux.pem
+
+      - name: Upload file to EC2
+        run: |
+          scp -i ~/.ssh/aws-linux.pem -o StrictHostKeyChecking=no aws-linux.pem ec2-user@44.201.230.20:/home/ec2-user/         
             
       - name: SSH into EC2 and run bash script
         run: |
-          ssh -i "${{ secrets.AWS_LINUX }}" ec2-user@44.201.230.20 "aws s3 cp s3://macdo_bucket/bash_test.sh /home/ec2-user/frontend_app && chmod +x /home/ec2-user/frontend_app/bash_test.sh && export DOCKER_USERNAME='${{ secrets.DOCKERHUB_USERNAME }}' && export DOCKER_PASSWORD='${{ secrets.DOCKERHUB_PASSWORD }}' && /home/ec2-user/frontend_app/bash_test.sh"
+          ssh -i "~/.ssh/aws-linux.pem" ec2-user@44.201.230.20 "aws s3 cp s3://macdo_bucket/bash_test.sh /home/ec2-user/frontend_app && chmod +x /home/ec2-user/frontend_app/bash_test.sh && export DOCKER_USERNAME='${{ secrets.DOCKERHUB_USERNAME }}' && export DOCKER_PASSWORD='${{ secrets.DOCKERHUB_PASSWORD }}' && /home/ec2-user/frontend_app/bash_test.sh"
        
