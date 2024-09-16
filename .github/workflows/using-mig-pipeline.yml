@@ -102,4 +102,8 @@ jobs:
 
       - name: Attach ASG to Elastic Load Balancer
         run: |
-            aws autoscaling attach-load-balancers --auto-scaling-group-name my-asg --load-balancer-names first-alb --region us-east-1
+            aws autoscaling attach-load-balancers 
+            --auto-scaling-group-name my-asg 
+            --load-balancer-names first-alb 
+            --target-group-arns arn:aws:elasticloadbalancing:us-east-1:891376976638:targetgroup/my-alb-target-g/cf9eb77b500422ce
+            --region us-east-1
