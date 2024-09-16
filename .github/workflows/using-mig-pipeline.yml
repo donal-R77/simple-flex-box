@@ -73,12 +73,12 @@ jobs:
             aws ec2 create-launch-template \
                 --launch-template-name lunch-templante-tp \
                 --tag-specifications 'ResourceType=launch-template,Tags=[{Key=Name,Value=production}]' \
-                --user-data  \
+                --user-data s3://macdo-bucket/simple-app-flexbox/initial-script/initial-script.sh \
                 --launch-template-data '{
                     "ImageId": "ami-0182f373e66f89c85", 
                     "InstanceType": "t2.micro",
                     "KeyName": "aws-linux",
-                    "UserData": "'"$(aws s3 cp s3://macdo-bucket/simple-app-flexbox/initial-script/initial-script.sh - | base64 -w 0)"'",
+                   
                     "Placement": {
                       "AvailabilityZone": "us-east-1a,us-east-1b"
                         },
