@@ -53,6 +53,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1  
 
+      - name: "Authentication for production"
+        run: |
+            aws sts get-caller-identity
+
       - name: Deploy script to S3
         run: |
           aws s3 cp bash_test.sh s3://macdo-bucket/simple-app-flexbox/ 
@@ -63,10 +67,6 @@ jobs:
             mkdir -p ~/.ssh
             echo "${{ secrets.AWS_LINUX }}" > ~/.ssh/aws-linux.pem
             chmod 400 ~/.ssh/aws-linux.pem
-
-      - name: Upload file to EC2
-        run: |
-          scp -i ~/.ssh/aws-linux.pem -o StrictHostKeyChecking=no aws-linux.pem ec2-user@107.20.112.218:/home/ec2-user/  
 
       - name: Create EC2 Launch Template for Auto Scaling
         run: |
