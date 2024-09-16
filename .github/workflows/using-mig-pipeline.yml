@@ -80,9 +80,6 @@ jobs:
                     "InstanceType": "t2.micro",
                     "KeyName": "aws-linux",
                     "UserData": "'"${ENCODED_SCRIPT}"'",
-                    "Placement": {
-                      "AvailabilityZone": "us-east-1a,us-east-1b"
-                        },
                     "TagSpecifications": [{
                     "ResourceType": "instance",
                     "Tags": [{
