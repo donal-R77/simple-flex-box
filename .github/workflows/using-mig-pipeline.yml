@@ -75,7 +75,7 @@ jobs:
                 --launch-template-data '{
                     "ImageId": "ami-0182f373e66f89c85", 
                     "InstanceType": "t2.micro",
-                    "UserData": "'"$(base64 -w 0 aws s3 cp initial-script.sh s3://macdo-bucket/simple-app-flexbox/initial-script/initial-script.sh)"'",  # Encodes and inserts the contents of frontend.sh
+                    "UserData": "'"$(base64 -w 0 aws s3 cp s3://macdo-bucket/simple-app-flexbox/initial-script/initial-script.sh)"'",
                     "TagSpecifications": [{
                     "ResourceType": "launch-template",
                     "Tags": [{
