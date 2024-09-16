@@ -77,13 +77,12 @@ jobs:
                 --launch-template-data '{
                     "ImageId": "ami-0182f373e66f89c85", 
                     "InstanceType": "t2.micro",
-                    "KeyName": "aws-linux",
-                    "UserData": "base64 initial-script.sh",
+                    "UserData": "'"$(base64 -w 0 aws s3 cp s3://macdo-bucket/simple-app-flexbox/initial-script/initial-script.sh)"'",
                     "TagSpecifications": [{
-                    "ResourceType": "instance",
+                    "ResourceType": "launch-template",
                     "Tags": [{
-                    "Key": "Name",
-                    "Value": "aws-linux-instance"
+                    "Key": "~/.ssh/aws-linux.pem",
+                    "Value": "lunch-template-tp"
                             }]
                         }]
                     }'
