@@ -78,7 +78,7 @@ jobs:
                     "ImageId": "ami-0182f373e66f89c85", 
                     "InstanceType": "t2.micro",
                     "KeyName": "aws-linux",
-                    "UserData": "'$(base64 -w 0 aws s3 cp s3://macdo-bucket/simple-app-flexbox/initial-script/initial-script.sh)'",
+                    "UserData": "'"$(base64 -w 0 aws s3 cp s3://macdo-bucket/simple-app-flexbox/initial-script/initial-script.sh)"'",
                     "Placement": {
                       "AvailabilityZone": "us-east-1a,us-east-1b"
                         },
