@@ -80,7 +80,7 @@ jobs:
                     "InstanceType": "t2.micro",
                     "UserData": "'"${USER_DATA}"'",
                     "TagSpecifications": [{
-                    "ResourceType": "instance,
+                    "ResourceType": "instance",
                     "Tags": [{
                     "Key": "Name",
                     "Value": "lunch-template-tp"
