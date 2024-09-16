@@ -98,3 +98,7 @@ jobs:
               --min-size 1 --max-size 2 --desired-capacity 1 \
               --vpc-zone-identifier subnet-0cbbc4fbbcb25642e \
               --region us-east-1
+
+      - name: Attach ASG to Elastic Load Balancer
+        run: |
+            aws autoscaling attach-load-balancers --auto-scaling-group-name my-asg --load-balancer-names first-alb
