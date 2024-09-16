@@ -96,5 +96,5 @@ jobs:
               --auto-scaling-group-name my-asg \
               --launch-template "LaunchTemplateName=lunch-template-tp,Version=$Latest" \
               --min-size 1 --max-size 2 --desired-capacity 1 \
-              --vpc-zone-identifier subnet-0cbbc4fbbcb25642e 
+              --vpc-zone-identifier subnet-0cbbc4fbbcb25642e \
               --region us-east-1
