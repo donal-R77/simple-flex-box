@@ -79,7 +79,7 @@ jobs:
                     "ImageId": "ami-0182f373e66f89c85", 
                     "InstanceType": "t2.micro",
                     "KeyName": "aws-linux",
-                    "UserData": "'"${ENCODED_SCRIPT}"'",
+                    "UserData": "${ENCODED_SCRIPT}",
                     "TagSpecifications": [{
                     "ResourceType": "instance",
                     "Tags": [{
