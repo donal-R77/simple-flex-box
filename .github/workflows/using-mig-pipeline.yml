@@ -71,7 +71,6 @@ jobs:
       - name: Create EC2 Launch Template for Auto Scaling
         run: |
             aws s3 cp s3://macdo-bucket/simple-app-flexbox/initial-script/initial-script.sh initial-script.sh 
-            ENCODED_SCRIPT=$(base64 initial-script.sh)
             aws ec2 create-launch-template \
                 --launch-template-name lunch-templante-tp \
                 --tag-specifications 'ResourceType=launch-template,Tags=[{Key=Name,Value=production}]' \
@@ -79,7 +78,7 @@ jobs:
                     "ImageId": "ami-0182f373e66f89c85", 
                     "InstanceType": "t2.micro",
                     "KeyName": "aws-linux",
-                    "UserData": "${ENCODED_SCRIPT}",
+                    "UserData": "base64 initial-script.sh",
                     "TagSpecifications": [{
                     "ResourceType": "instance",
                     "Tags": [{
