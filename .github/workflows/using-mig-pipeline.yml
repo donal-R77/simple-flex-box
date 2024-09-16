@@ -94,7 +94,8 @@ jobs:
           echo "Creating new ASG"
           aws autoscaling create-auto-scaling-group \
               --auto-scaling-group-name my-asg \
-              --launch-template lunch-template-tp,Version=\$Latest \
+              --launch-template lunch-template-tp \
+              --version $Latest \
               --min-size 1 --max-size 2 --desired-capacity 1 \
               --vpc-zone-identifier subnet-0cbbc4fbbcb25642e 
               --region us-east-1
