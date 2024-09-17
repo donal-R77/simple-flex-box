@@ -1,4 +1,4 @@
-#!/usr/bin
+#!/bin/bash
 sudo yum update -y
 sudo yum install docker -y
 sudo chown root:docker /var/run/docker.sock
