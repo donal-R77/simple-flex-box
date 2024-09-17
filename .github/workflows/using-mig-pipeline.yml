@@ -62,12 +62,6 @@ jobs:
           aws s3 cp bash_test.sh s3://macdo-bucket/simple-app-flexbox/ 
           aws s3 cp initial-script.sh s3://macdo-bucket/simple-app-flexbox/initial-script/
 
-      - name: Add SSH key
-        run: |
-            mkdir -p ~/.ssh
-            echo "${{ secrets.AWS_LINUX }}" > ~/.ssh/aws-linux.pem
-            chmod 400 ~/.ssh/aws-linux.pem
-
       - name: Create EC2 Launch Template for Auto Scaling
         run: |
             aws s3 cp s3://macdo-bucket/simple-app-flexbox/initial-script/initial-script.sh initial-script.sh 
@@ -78,6 +72,7 @@ jobs:
                 --launch-template-data '{
                     "ImageId": "ami-0182f373e66f89c85", 
                     "InstanceType": "t2.micro",
+                    "SecurityGroupIds": ["sg-0b7676a064fe79bed"], 
                     "UserData": "'"${USER_DATA}"'",
                     "TagSpecifications": [{
                     "ResourceType": "instance",
