@@ -1,6 +1,8 @@
 #!/bin/bash
 sudo yum update -y
 sudo yum install docker -y
+sudo systemctl start docker
+sudo systemctl enable docker
 sudo chown root:docker /var/run/docker.sock
 sudo chmod a+w /var/run/docker.sock
 
