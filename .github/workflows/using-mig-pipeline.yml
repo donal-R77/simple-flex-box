@@ -73,6 +73,9 @@ jobs:
                     "ImageId": "ami-0182f373e66f89c85", 
                     "InstanceType": "t2.micro",
                     "SecurityGroupIds": ["sg-0b7676a064fe79bed"], 
+                    "IamInstanceProfile": {
+                          "Name": "EC2S3AccessRole"
+                       }, 
                     "UserData": "'"${USER_DATA}"'",
                     "TagSpecifications": [{
                     "ResourceType": "instance",
