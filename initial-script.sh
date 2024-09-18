@@ -6,6 +6,7 @@ sudo systemctl enable docker
 sudo chown root:docker /var/run/docker.sock
 sudo chmod a+w /var/run/docker.sock
 
+aws configure set aws_access_key_id '${secrets.}'
 aws s3 cp s3://macdo-bucket/simple-app-flexbox/bash_test.sh /home/ec2-user/
 
 chmod +x /home/ec2-user/bash_test.sh

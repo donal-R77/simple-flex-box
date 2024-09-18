@@ -70,7 +70,7 @@ jobs:
                 --launch-template-name lunch-template-tp \
                 --tag-specifications 'ResourceType=launch-template,Tags=[{Key=Name,Value=production}]' \
                 --launch-template-data '{
-                    "ImageId": "ami-0182f373e66f89c85", 
+                    "ImageId": "ami-0e86e20dae9224db8", 
                     "InstanceType": "t2.micro",
                     "SecurityGroupIds": ["sg-0b7676a064fe79bed"], 
                     "UserData": "'"${USER_DATA}"'",
@@ -82,6 +82,7 @@ jobs:
                             }]
                         }]
                     }'
+                    
     
       - name: Create or update auto scaling group
         run: |
