@@ -60,7 +60,6 @@ jobs:
       - name: Deploy script to S3
         run: |
           aws s3 cp bash_test.sh s3://macdo-bucket/simple-app-flexbox/ 
-          aws s3 cp initial-script.sh s3://macdo-bucket/simple-app-flexbox/initial-script/
 
       - name: Create EC2 Launch Template for Auto Scaling
         run: |
