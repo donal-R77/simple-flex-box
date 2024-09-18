@@ -63,7 +63,7 @@ jobs:
 
       - name: Create EC2 Launch Template for Auto Scaling
         run: |
-            aws s3 cp s3://macdo-bucket/simple-app-flexbox/initial-script/initial-script.sh initial-script.sh 
+            aws s3 cp s3://macdo-bucket/simple-app-flexbox/initial-script.sh initial-script.sh 
             USER_DATA=$(base64 -w 0 initial-script.sh)
             aws ec2 create-launch-template \
                 --launch-template-name lunch-template-tp \
