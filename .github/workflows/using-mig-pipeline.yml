@@ -92,15 +92,7 @@ jobs:
                     
     
       - name: Create or update auto scaling group
-        run: |
-          if aws autoscaling describe-auto-scaling-groups --auto-scaling-group-name my-asg --query "AutoScalingGroups[0].AutoScalingGroupName" --output text 2>&1; then
-            echo "Update an existing ASG"
-            aws autoscaling update-auto-scaling-group \
-              --auto-scaling-group-name my-asg \
-              --launch-template LaunchTemplateName=lunch-template-tp-be-${{ needs.build-image.outputs.git-current-commit }},Version=\$Latest \
-              --min-size 1 --max-size 2 --desired-capacity 1
-            aws autoscaling start-instance-refresh --auto-scaling-group-name my-asg --preferences '{"MinHealthyPercentage": 100, "InstanceWarmup": 300}' 
-          else           
+        run: |        
             echo "Creating new ASG"
             aws autoscaling create-auto-scaling-group \
               --auto-scaling-group-name my-asg \
@@ -108,7 +100,7 @@ jobs:
               --min-size 1 --max-size 2 --desired-capacity 1\
               --vpc-zone-identifier subnet-0cbbc4fbbcb25642e \
               --region us-east-1
-          fi 
+          
 
       - name: Attach ASG to Elastic Load Balancer
         run: |
