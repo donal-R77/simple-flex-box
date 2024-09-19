@@ -2,7 +2,7 @@ name: Continuous Integration
 
 on:
   push:
-    branches: ["monal"]
+    branches: ["donal"]
 env:
    APPLICATION_NAME: flexbox  
 jobs:
