@@ -65,7 +65,7 @@ jobs:
 
       - name: Upload file to EC2
         run: |
-          scp -i ~/.ssh/aws-linux.pem -o StrictHostKeyChecking=no aws-linux.pem ec2-user@107.20.112.218:/home/ec2-user/         
+          scp -i ~/.ssh/aws-linux.pem -o StrictHostKeyChecking=no aws-linux.pem ec2-user@18.207.178.74:/home/ec2-user/         
             
       - name: SSH into EC2 and run bash script
         run: |
