@@ -4,7 +4,7 @@ on:
   push:
     branches: ["main"]
 env:
-   APPLICATION_NAME: frontend-refonte-ai   
+   APPLICATION_NAME: flexbox  
 jobs:
    build-image:
          name: 🛠 Building and Pushing to Docker Hub
@@ -36,7 +36,7 @@ jobs:
                  context: .
                  file: ./Dockerfile
                  push: true
-                 tags: ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:latest 
+                 tags: ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:flex 
   
    deploy:
        name: Deploying to GCP 🚀
