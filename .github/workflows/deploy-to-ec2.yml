@@ -2,7 +2,7 @@ name: Pipeline
 
 on: 
   push:
-    branches: ['donal']
+    branches: ['main']
 
 env:
   APPLICATION_NAME: flexbox 
@@ -69,7 +69,7 @@ jobs:
             
       - name: SSH into EC2 and run bash script
         run: |
-          ssh -i "~/.ssh/aws-linux.pem" ec2-user@107.20.112.218 bash -c '
+          ssh -i "~/.ssh/aws-linux.pem" ec2-user@18.207.178.74 bash -c '
           aws s3 cp s3://macdo-bucket/simple-app-flexbox/bash_test.sh /home/ec2-user/frontend_app &&
           chmod +x /home/ec2-user/frontend_app/bash_test.sh &&
           export DOCKER_USERNAME="${{ secrets.DOCKERHUB_USERNAME }}" &&
