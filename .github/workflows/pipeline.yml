@@ -28,3 +28,26 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:flex-box
+          
+ deploy on gcp:
+      needs: [build-image]
+      name: deploy to gcp
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3.5.3
+        - name: 'Authentification'
+          uses: "google-github-actions/auth@v1"
+          with:
+            credentials_json: "${{secrets.GCP_SERVICE_ACCT}}"
+
+        - name: deploy script file
+          shell: 'bash'
+          run: |
+            gcloud storage cp bash_test gs://deploy-file/frontend-script/
+
+        - name: 'bash for deploying to gcp'
+          shell: 'bash'
+          run: |      
+           gcloud compute ssh "instance-tp-1" --zone "us-central1-f" --tunnel-through-iap --project "primeval-mark-378114" --command="cd /home/runner/frontend_app && gcloud storage cp gs://deploy-file/frontend-script/bash_test.sh /home/runner/frontend_app && chmod +x bash_test.sh && export DOCKER_USERNAME='${{secrets.DOCKERHUB_USERNAME}}' && export DOCKER_PASSWORD='${{secrets.DOCKERHUB_PASSWORD}}' && ./bash_test.sh"  
+
+
