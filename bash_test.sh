@@ -14,7 +14,7 @@ docker pull "${IMAGE_NAME}"
 if [[ $(docker ps -qqa -f name="${CONTAINER_NAME}") ]] ; then 
   docker container stop flex && docker container rm flex
 fi 
-docker run -d -p 5000:5000 --name flex maric77/flexbox:flex
+docker run -d -p ${PORTS} --name ${CONTAINER_NAME} ${IMAGE_NAME}
 
 #remove
 docker container prune -f 
