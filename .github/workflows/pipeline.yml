@@ -28,8 +28,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{secrets.DOCKERHUB_USERNAME}}/${{env.APPLICATION_NAME}}:flex-box
-          
- deploy on gcp:
+
+  deploy-on-gcp:
       needs: [build-image]
       name: deploy to gcp
       runs-on: ubuntu-latest
